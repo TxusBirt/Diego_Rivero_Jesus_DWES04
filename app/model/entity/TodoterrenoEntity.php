@@ -1,11 +1,12 @@
 <?php
 /*
     Autor:Jesus Diego Rivero
-    Fecha: 21/12/2023
+    Fecha: 15/02/2024
     Modulo: DWES
-    UD: 03
-    Clase Todoterreno que hereda de Vehiculo
-*/  
+    UD: 04
+    Clase TodoterrenoEntity que hereda de VehiculoEntity
+    Define los objetos Todoterreno
+*/   
 require_once 'VehiculoEntity.php';
 
 class TodoterrenoEntity extends VehiculoEntity {

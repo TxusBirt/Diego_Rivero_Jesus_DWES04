@@ -1,11 +1,11 @@
 <?php
 /*
     Autor:Jesus Diego Rivero
-    Fecha: 21/12/2023
+    Fecha: 15/02/2024
     Modulo: DWES
-    UD: 03
-    Clase Vehiculo padre de las demás
-*/  
+    UD: 04
+    Clase  VehiculoEntity es una clase abstracta de la que heredan las otras
+*/ 
 abstract class VehiculoEntity {
     protected $marca;
     protected $modelo;

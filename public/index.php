@@ -24,7 +24,7 @@ $router->add('/public/vehiculocontroller/get', array(
 );
 $router->add('/public/vehiculocontroller/get/{id}', array(
     'controller' => 'Vehiculocontroller',
-    'action'=>'getVehiculoById'
+    'action'=>'getVehiculoByParam'
     )
 );
 $router->add('/public/vehiculocontroller/create', array(

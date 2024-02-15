@@ -1,12 +1,13 @@
 <?php
-require_once 'VehiculoEntity.php';
 /*
     Autor:Jesus Diego Rivero
-    Fecha: 21/12/2023
+    Fecha: 15/02/2024
     Modulo: DWES
-    UD: 03
-    Clase Furgoneta que hereda de Vehiculo
+    UD: 04
+    Clase FurgonetaEntity que hereda de VehiculoEntity
+    Define los objetos Furgoneta
 */  
+require_once 'VehiculoEntity.php';
 class FurgonetaEntity extends VehiculoEntity {
     // propiedad unica de esta clase
     protected $capacidad;

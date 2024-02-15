@@ -1,11 +1,12 @@
 <?php
 /*
     Autor:Jesus Diego Rivero
-    Fecha: 21/12/2023
+    Fecha: 15/02/2024
     Modulo: DWES
-    UD: 03
-    Clase Turismo que hereda de Vehiculo
-*/ 
+    UD: 04
+    Clase TurismoEntity que hereda de VehiculoEntity
+    Define los objetos turismo
+*/   
 require_once 'VehiculoEntity.php';
 
 class TurismoEntity extends VehiculoEntity {

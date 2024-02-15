@@ -9,7 +9,7 @@
 class SuccessCod {
     public static function ok($data = null) {
         http_response_code(200);
-        //header('Content-Type: application/json');
+        header('Content-Type: application/json');
         echo self::generateResponse(200, 'OK', $data);
         
     }

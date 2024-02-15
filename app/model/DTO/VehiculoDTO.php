@@ -1,14 +1,22 @@
 <?php
+/*
+    Autor:Jesus Diego Rivero
+    Fecha: 15/02/2024
+    Modulo: DWES
+    UD: 04
+    Clase VehiculoDTO 
+    Es una clase general que sirve para encapsular todos los datos relacionados con 
+    vehículos
+*/  
 require_once __DIR__.'/../entity/FurgonetaEntity.php';
 require_once __DIR__.'/../entity/TodoterrenoEntity.php';
 require_once __DIR__.'/../entity/TurismoEntity.php';
 class VehiculoDTO implements JsonSerializable{
+    // propiedad que será un objeto
     private $vehiculo;
     
     public function __construct($clase, $datos) {
      
-        
-
         // Dependiendo del tipo de objeto, inicializamos $vehiculo con una instancia adecuada
         switch ($clase) {
             case 'furgoneta':
@@ -25,8 +33,6 @@ class VehiculoDTO implements JsonSerializable{
             }
         }
 
-    
-    
     public function jsonSerialize(): mixed
     {
         return get_object_vars($this);
