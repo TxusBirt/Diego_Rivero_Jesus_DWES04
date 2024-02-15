@@ -12,7 +12,7 @@ require __DIR__.'/../app/controller/Vehiculocontroller.php';
 require_once __DIR__ . '/../app/utilities/httpCode/ClientErrorCod.php';
 //establezco la url base sobre la que luego la api trabaja
 $url = $_SERVER['QUERY_STRING'];
-echo 'URL = ' .$url. '<br>';
+
 
 //recojo los parametros que me viene por url y en funcion de ellos redirijo hacia el controlador y metodo a aplicar
 $router = new Router();
