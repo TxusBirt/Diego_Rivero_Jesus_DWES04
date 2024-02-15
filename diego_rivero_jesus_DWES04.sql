@@ -3,7 +3,7 @@
 CREATE DATABASE IF NOT EXISTS diego_rivero_jesus_DwesBd04;
 
 -- Seleccionar la base de datos
-USE DwesBd04;
+USE diego_rivero_jesus_DwesBd04;
 -- Eliminar las tablas si existen
 DROP TABLE IF EXISTS todoterrenos;
 DROP TABLE IF EXISTS turismos;
