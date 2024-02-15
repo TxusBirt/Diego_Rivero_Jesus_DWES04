@@ -22,7 +22,8 @@ $router->add('/public/vehiculocontroller/get', array(
     'action'=>'getAllVehiculos'
     )
 );
-$router->add('/public/vehiculocontroller/get/{id}', array(
+// cambio el nombre del metodo
+$router->add('/public/vehiculocontroller/get/{param}', array(
     'controller' => 'Vehiculocontroller',
     'action'=>'getVehiculoByParam'
     )
@@ -33,13 +34,13 @@ $router->add('/public/vehiculocontroller/create', array(
     )
 );
 
-$router->add('/public/vehiculocontroller/update/{id}', array(
+$router->add('/public/vehiculocontroller/update/{param}', array(
     'controller' => 'Vehiculocontroller',
     'action'=>'updateVehiculo'
     )
 );
 
-$router->add('/public/vehiculocontroller/delete/{id}', array(
+$router->add('/public/vehiculocontroller/delete/{param}', array(
     'controller' => 'Vehiculocontroller',
     'action'=>'deleteVehiculo'
     )
@@ -94,7 +95,7 @@ if ($router->matchRoute($urlArray)) {
     $params = [];
 
     if ($method === 'GET') {
-
+        //cambio los parametros de forma que simpre que sea valido me lleve al metodo correspondiente
        $params[] = !empty($urlArray['params']) ? (is_numeric($urlArray['params']) ? (int)$urlArray['params'] : $urlArray['params']) : null;
       // $params[] = intval($urlArray['params']) ?? null;
 

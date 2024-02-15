@@ -4,11 +4,11 @@
     Fecha: 15/02/2024
     Modulo: DWES
     UD: 04
-    Clase AlquiladoDTO 
+    Clase PrestadoDTO 
     Es una clase  que sirve para encapsular  los datos de los vehículos prestados y los usuarios 
     de los mismos
 */ 
-class AlquiladoDTO implements JsonSerializable{
+class PrestadoDTO implements JsonSerializable{
     private $marca;
     private $modelo;
     private $clase;

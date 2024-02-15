@@ -10,7 +10,7 @@
 require_once '../core/DatabaseSingleton.php';
 require __DIR__.'/../DTO/VehiculoDTO.php';
 require __DIR__.'/../DTO/VehiculoCrearDTO.php';
-require __DIR__.'/../DTO/AlquiladoDTO.php';
+require __DIR__.'/../DTO/PrestadoDTO.php';
 class VehiculoDAO{
     // Establezco una propiedad privada
     private $db;
@@ -49,9 +49,9 @@ class VehiculoDAO{
     // funcion que según le parametro que le pasemos nos devuelve difernetes resultados
     public function obtenerVehiculoPorParam($param) {
         $connection = $this->db->getConnection();
-        // si pasamos el parametro "alquilado" en la url nos devuelve todos
+        // si pasamos el parametro "prestado" en la url nos devuelve todos
         // los vehiculos prestados y las personas que los han reservado
-        if ($param=='alquilado') {
+        if ($param=='prestado') {
             $query = "SELECT v.marca, v.modelo, v.clase, v.prestado, v.fecha_inicio, v.fecha_fin, 
             u.nombre, u.departamento, f.capacidad, td.cuatro_por_cuatro, tu.electrico 
             FROM vehiculos v LEFT JOIN  furgonetas f ON v.id = f.vehiculo_id 
@@ -60,20 +60,20 @@ class VehiculoDAO{
             on v.usuario_id = u.usuario_id WHERE v.prestado = 'si'";
             $statement = $connection->query($query);
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-            $vehiculosAlquilados = [];
+            $vehiculosPrestados = [];
             for ($i=0;$i<count($result);$i++) {
                 if ($result[$i]['clase']=='furgoneta'){
-                    $alquiladoDTO= new AlquiladoDTO($result[$i]['clase'], $result[$i]);
-                    $vehiculosAlquilados[] = $alquiladoDTO;  
+                    $prestadoDTO= new PrestadoDTO($result[$i]['clase'], $result[$i]);
+                    $vehiculosPrestados[] = $prestadoDTO;  
                 } else if($result[$i]['clase']=='turismo'){
-                    $alquiladoDTO= new AlquiladoDTO($result[$i]['clase'], $result[$i]);
-                    $vehiculosAlquilados[] = $alquiladoDTO;  
+                    $prestadoDTO= new PrestadoDTO($result[$i]['clase'], $result[$i]);
+                    $vehiculosPrestados[] = $prestadoDTO;  
                 }else if($result[$i]['clase']=='todoterreno'){
-                    $alquiladoDTO= new AlquiladoDTO($result[$i]['clase'], $result[$i]);
-                    $vehiculosAlquilados[] = $alquiladoDTO;          
+                    $prestadoDTO= new PrestadoDTO($result[$i]['clase'], $result[$i]);
+                    $vehiculosPrestados[] = $prestadoDTO;          
                 }  
             }
-            return $vehiculosAlquilados;
+            return $vehiculosPrestados;
         // si le pasamos otros parametro valido entramos en esta opcion
         } else {
             // establece que el parametro es numerico para devolvernos el vehículo con el 
@@ -178,7 +178,6 @@ class VehiculoDAO{
         // Vinculo los parámetros
         foreach ($datos as $dato => $valor) {
             $statement->bindParam(":$dato", $datos[$dato]);
-            print_r ($statement);
         }
         $statement->bindParam(':id', $id);
         $statement->execute();

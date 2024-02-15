@@ -26,8 +26,8 @@ class Router {
         // obtengo los registros existentes
         $bbddObject = new VehiculoDAO();
         $bbddArray=$bbddObject->obtenerVehiculos();
-        //creo un array para  los id de los registros que existen
-        $listaId = array('furgoneta', 'todoterreno', 'turismo', 'alquilado');
+        //creo un array para  los id de los registros que existen y parametros de busqueda que me interesan 
+        $listaId = array('furgoneta', 'todoterreno', 'turismo', 'prestado');
         foreach ($bbddArray as $object) {
                 $listaId[] = $object->getPropiedad_id();
         }
@@ -36,7 +36,7 @@ class Router {
         $rango = implode('|', $listaId);
         foreach ($this->routes as $route => $params) 
         {
-            $pattern = str_replace(['{id}', '/'], ['('.$rango.')', '\/'], $route);
+            $pattern = str_replace(['{param}', '/'], ['('.$rango.')', '\/'], $route);
             $pattern = '/^'.$pattern.'$/';
             if(preg_match($pattern, $url['path'])) {
                 $this->params=$params;
