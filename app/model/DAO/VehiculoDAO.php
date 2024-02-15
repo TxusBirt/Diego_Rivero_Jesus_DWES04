@@ -40,28 +40,39 @@ class VehiculoDAO{
     }
     public function obtenerVehiculoPorId($id) {
         $connection = $this->db->getConnection();
+        if (is_numeric($id)) {
         //var_dump($connection);
         $query = "SELECT v.*, f.capacidad AS capacidad, tu.electrico 
                   AS electrico, td.cuatro_por_cuatro AS cuatro_por_cuatro 
                   FROM vehiculos v LEFT JOIN  furgonetas f ON v.id = f.vehiculo_id 
                   LEFT JOIN turismos tu ON v.id = tu.vehiculo_id LEFT JOIN  
                   todoterrenos td ON v.id = td.vehiculo_id WHERE v.id = '$id'";
-        
+        } else {
+            $query = "SELECT v.*, f.capacidad AS capacidad, tu.electrico 
+            AS electrico, td.cuatro_por_cuatro AS cuatro_por_cuatro 
+            FROM vehiculos v LEFT JOIN  furgonetas f ON v.id = f.vehiculo_id 
+            LEFT JOIN turismos tu ON v.id = tu.vehiculo_id LEFT JOIN  
+            todoterrenos td ON v.id = td.vehiculo_id WHERE v.clase = '$id'";
+        }
         $statement = $connection->query($query);
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         print_r($result);
-        
-        if ($result[0]['clase']=='furgoneta'){
-            $vehiculoIdDTO= new VehiculoDTO($result[0]['clase'], $result[0]);
-            return $vehiculoIdDTO;  
-        } else if($result[0]['clase']=='turismo'){
-            $vehiculoIdDTO= new VehiculoDTO($result[0]['clase'],$result[0]);
-            return $vehiculoIdDTO; 
-        }else if($result[0]['clase']=='todoterreno'){
-            $vehiculoIdDTO= new VehiculoDTO($result[0]['clase'],$result[0]);
-            return $vehiculoIdDTO;         
-        }  
+        $vehiculosTipoDTO = [];
+        for ($i=0;$i<count($result);$i++) {
+            if ($result[$i]['clase']=='furgoneta'){
+                $vehiculoDTO= new VehiculoDTO($result[$i]['clase'], $result[$i]);
+                $vehiculosTipoDTO[] = $vehiculoDTO;  
+            } else if($result[$i]['clase']=='turismo'){
+                $vehiculoDTO= new VehiculoDTO($result[$i]['clase'],$result[$i]);
+                $vehiculosTipoDTO[] = $vehiculoDTO;  
+            }else if($result[$i]['clase']=='todoterreno'){
+                $vehiculoDTO= new VehiculoDTO($result[$i]['clase'],$result[$i]);
+                $vehiculosTipoDTO[] = $vehiculoDTO;        
+            }  
+        }
+        return $vehiculosTipoDTO;
     }
+
     public function crearVehiculo($datos) {
         $connection = $this->db->getConnection();
         $connection->beginTransaction();

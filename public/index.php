@@ -95,7 +95,8 @@ if ($router->matchRoute($urlArray)) {
 
     if ($method === 'GET') {
 
-        $params[] = intval($urlArray['params']) ?? null;
+       $params[] = !empty($urlArray['params']) ? (is_numeric($urlArray['params']) ? (int)$urlArray['params'] : $urlArray['params']) : null;
+      // $params[] = intval($urlArray['params']) ?? null;
 
     } elseif ($method === 'POST') {
 

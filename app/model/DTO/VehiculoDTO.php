@@ -16,7 +16,6 @@ class VehiculoDTO implements JsonSerializable{
                 break;
             case 'turismo':
                 $this->vehiculo = new TurismoEntity($datos);
-
                 break;
             case 'todoterreno':
                 $this->vehiculo = new TodoterrenoEntity($datos);

@@ -43,11 +43,15 @@ class Vehiculocontroller {
     // metodo para obtener un  vehiculo de la BBDD
     public function getVehiculoById($id) {
         $elementoBuscado = $this->bbddObject->obtenerVehiculoPorId($id);
-        $elementoBuscadoArray = $elementoBuscado->getVehiculo()->toArray();
-        $elementoBuscadoJson = json_encode($elementoBuscadoArray, JSON_PRETTY_PRINT);
+        $arrayDatos=[];
+        foreach($elementoBuscado as $dato ){
+            $arrayDatos[]=($dato->getVehiculo()->toArray());
+        }
+        $datosJson=json_encode($arrayDatos, JSON_PRETTY_PRINT);
+        
         SuccessCod::ok(['result' => 'registro recuperado con éxito']);
-        echo $elementoBuscadoJson;
-        return $elementoBuscadoJson;
+        echo $datosJson;
+        return $datosJson;
     }
     
     // metodo para crear vehiculos e introducirlos en la BBDD

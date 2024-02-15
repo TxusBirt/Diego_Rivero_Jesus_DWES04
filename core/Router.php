@@ -27,7 +27,7 @@ class Router {
         $bbddObject = new VehiculoDAO();
         $bbddArray=$bbddObject->obtenerVehiculos();
         //creo un array para  los id de los registros que existen
-        $listaId = array();
+        $listaId = array('furgoneta', 'todoterreno', 'turismo');
         foreach ($bbddArray as $object) {
                 $listaId[] = $object->getPropiedad_id();
         }
