@@ -42,7 +42,7 @@ class Vehiculocontroller {
     public function getVehiculoByParam($param) {
         $elementoBuscado = $this->bbddObject->obtenerVehiculoPorParam($param);
         if ($param == 'prestado'){
-            $datosJson = json_encode($elementoBuscado);
+            $datosJson = json_encode($elementoBuscado, JSON_PRETTY_PRINT);
             echo $datosJson;
             SuccessCod::ok(['result' => 'vehiculos prestados recuperado con éxito']);
             return $datosJson;

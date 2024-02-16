@@ -20,7 +20,10 @@ class VehiculoCrearDTO implements JsonSerializable{
     private $usuario_id;
     private $revision;
     private $id;
-    private $detalleClase;
+    private $capacidad;
+    private $electrico;
+    private $cuatro_por_cuatro;
+    
     
     public function __construct($clase, $datos) {
         $this->marca = $datos['marca'];
@@ -36,11 +39,11 @@ class VehiculoCrearDTO implements JsonSerializable{
         $this->revision = $datos['revision'];
         $this->id = $datos['id'];
         if ($clase == 'furgoneta') {
-            $this->detalleClase = $datos['capacidad'];
+            $this->capacidad = $datos['capacidad'];
         } elseif ($clase == 'todoterreno') {
-            $this->detalleClase = $datos['cuatro_por_cuatro'];
+            $this->electrico = $datos['cuatro_por_cuatro'];
         } elseif ($clase == 'turismo') {
-            $this->detalleClase = $datos['electrico'];
+            $this->cuatro_por_cuatro = $datos['electrico'];
         }
     }
     public function jsonSerialize(): mixed
@@ -167,12 +170,28 @@ class VehiculoCrearDTO implements JsonSerializable{
 
 
     /**
-     * Get the value of opcional
+     * Get the value of capacidad
      */
-    public function getDetalleClase()
+    public function getCapacidad()
     {
-        return $this->detalleClase;
+        return $this->capacidad;
     }
+    /**
+     * Get the value of electrico
+     */
+    public function getElectrico()
+    {
+        return $this->electrico;
+    }
+
+    /**
+     * Get the value of cuatro_por_cuatro
+     */
+    public function getCuatro_por_cuatro()
+    {
+        return $this->cuatro_por_cuatro;
+    }
+
 }
 
 ?>

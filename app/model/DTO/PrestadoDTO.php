@@ -15,7 +15,9 @@ class PrestadoDTO implements JsonSerializable{
     private $prestado;
     private $fecha_inicio;
     private $fecha_fin;
-    private $detalleClase;
+    private $capacidad;
+    private $electrico;
+    private $cuatro_por_cuatro;
     private $nombre;
     private $departamento;
 
@@ -28,11 +30,11 @@ class PrestadoDTO implements JsonSerializable{
         $this->fecha_inicio = $datos['fecha_inicio'];
         $this->fecha_fin = $datos['fecha_fin'];
         if ($clase == 'furgoneta') {
-            $this->detalleClase = $datos['capacidad'];
+            $this->capacidad = $datos['capacidad'];
         } elseif ($clase == 'todoterreno') {
-            $this->detalleClase = $datos['cuatro_por_cuatro'];
+            $this->cuatro_por_cuatro = $datos['cuatro_por_cuatro'];
         } elseif ($clase == 'turismo') {
-            $this->detalleClase = $datos['electrico'];
+            $this->electrico = $datos['electrico'];
         }
         $this->nombre = $datos['nombre'];
         $this->departamento = $datos['departamento'];
@@ -82,13 +84,27 @@ class PrestadoDTO implements JsonSerializable{
     }
 
     /**
-     * Get the value of prestado
+     * Get the value of capacidad
      */
-    public function getDetalleClase()
+    public function getCapacidad()
     {
-        return $this->detalleClase;
+        return $this->capacidad;
     }
 
+    /**
+     * Get the value of cuatro_por_cuatro
+     */
+    public function getCuatro_por_cuatro()
+    {
+        return $this->cuatro_por_cuatro;
+    }
+    /**
+     * Get the value of cuatro_por_cuatro
+     */
+    public function getElectrico()
+    {
+        return $this->electrico;
+    }
     /**
      * Get the value of fecha_inicio
      */

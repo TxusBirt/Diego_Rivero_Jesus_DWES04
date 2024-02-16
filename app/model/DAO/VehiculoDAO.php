@@ -135,13 +135,13 @@ class VehiculoDAO{
             $vehiculoCrearDTO->getRevision(), $vehiculoCrearDTO->getId()]); 
             if ($clase == 'furgoneta') {
                 $query = "INSERT INTO furgonetas (vehiculo_id, capacidad) VALUES (?,?)";
-                $caract=[$id,$vehiculoCrearDTO->getDetalleClase()];
+                $caract=[$id,$vehiculoCrearDTO->getCapacidad()];
             } else if ($clase == 'todoterreno') {
                 $query = "INSERT INTO todoterrenos (vehiculo_id, cuatro_por_cuatro) VALUES (?,?)";
-                $caract=[$id,$vehiculoCrearDTO->getDetalleClase()];
+                $caract=[$id,$vehiculoCrearDTO->getCuatro_por_cuatro()];
             } else if ($clase == 'turismo') {
                 $query = "INSERT INTO turismos (vehiculo_id, electrico) VALUES (?,?)";
-                $caract=[$id,$vehiculoCrearDTO->getDetalleClase()];
+                $caract=[$id,$vehiculoCrearDTO->getElectrico()];
             } 
             $statementInsert1 = $connection->prepare($query);
             $statementInsert1->execute($caract); 
