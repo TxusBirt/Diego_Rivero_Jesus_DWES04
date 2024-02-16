@@ -13,18 +13,18 @@ require_once __DIR__ .'/../utilities/httpCode/SuccessCod.php';
 //clase que controla las acciones de la API
 class Vehiculocontroller {
 
-    private $bbddObject;
+    private $daoObject;
 
     function __construct()
     // objeto de la clase BbddManage como atributo
     {
-        $this->bbddObject = new VehiculoDAO();
+        $this->daoObject = new VehiculoDAO();
     }
     // metodo para obtener todos los vehiculos de la BBDD
     public function getAllVehiculos() {
         //datos son obejtos VehiculoDAO que están formados por objetos de
         //las clases FurgonetaEntity, TodoterrenoEnttity y TurismoEntity
-        $datos = $this->bbddObject->obtenerVehiculos();
+        $datos = $this->daoObject->obtenerVehiculos();
    
         //Como son todos objetos con propiedades protegidas o privadas 
         //hay que transformarlos en array para poder convertirlo en json
@@ -33,14 +33,14 @@ class Vehiculocontroller {
             $arrayDatos[]=($dato->getVehiculo()->toArray());
         }
         $datosJson=json_encode($arrayDatos, JSON_PRETTY_PRINT);
-        echo $datosJson;
+        //echo $datosJson;
         SuccessCod::ok(['result' => 'registros recuperados con éxito']);
         return $datosJson;
     }
 
     // metodo para obtener un  vehiculo de la BBDD
     public function getVehiculoByParam($param) {
-        $elementoBuscado = $this->bbddObject->obtenerVehiculoPorParam($param);
+        $elementoBuscado = $this->daoObject->obtenerVehiculoPorParam($param);
         if ($param == 'prestado'){
             $datosJson = json_encode($elementoBuscado, JSON_PRETTY_PRINT);
             echo $datosJson;
@@ -53,7 +53,7 @@ class Vehiculocontroller {
         }
         $datosJson=json_encode($arrayDatos, JSON_PRETTY_PRINT);
         
-        echo $datosJson;
+        //echo $datosJson;
         SuccessCod::ok(['result' => 'registros recuperados con éxito']);
         return $datosJson;
     }
@@ -61,19 +61,19 @@ class Vehiculocontroller {
     
     // metodo para crear vehiculos e introducirlos en la BBDD
     public function createVehiculo($data) {
-        $this->bbddObject->crearVehiculo($data);
+        $this->daoObject->crearVehiculo($data);
         SuccessCod::created(['result' => 'registro creado con éxito']);
     }
     
     // metodo para actualizar los atributos de los vehiculos
     public function updateVehiculo($id, $data) {
-        $this->bbddObject->modificarVehiculo($id, $data);
+        $this->daoObject->modificarVehiculo($id, $data);
         SuccessCod::ok(['result' => 'registro actualizado con exito']);
 
     }
     // metodo para borrar  los vehiculos de la BBDD por id
     public function deleteVehiculo($id) {
-        $this->bbddObject->eliminarVehiculo($id);
+        $this->daoObject->eliminarVehiculo($id);
         SuccessCod::ok(['result' => 'registro eliminado con exito']);
     }
 

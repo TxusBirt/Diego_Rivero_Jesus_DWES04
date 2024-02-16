@@ -164,7 +164,6 @@ class VehiculoDAO{
         }
         // Eliminar la coma y el espacio extra al final
         $modificacion = rtrim($modificacion, ', ');
-        echo $modificacion;
         // Construyo la consulta de actualización
         $query = "UPDATE vehiculos v 
                   LEFT JOIN furgonetas f ON v.id = f.vehiculo_id 
